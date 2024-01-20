@@ -1,0 +1,36 @@
+plugins {
+    id 'org.springframework.boot' version '3.1.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'application'
+}
+
+group 'com.nur'
+version '1.0'
+sourceCompatibility = '17'
+archivesBaseName  = 'check-in-api'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'com.nur.CheckInApiApplication'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws-messaging:2.2.6.RELEASE'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.4'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.apache.kafka:kafka-streams'
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
+}
+
+test {
+    useJUnitPlatform()
+}
+apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")

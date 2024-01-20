@@ -1,0 +1,85 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+plugins {
+    id 'java'
+    id "org.sonarqube" version "3.4.0.2513"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+    id 'idea'
+}
+
+group 'com.nur'
+version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+apply from: file('gradle/heroku/clean.gradle')
+
+subprojects {
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    test {
+        finalizedBy jacocoTestReport
+        testLogging {
+            events TestLogEvent.FAILED,
+                    TestLogEvent.PASSED,
+                    TestLogEvent.SKIPPED
+        }
+    }
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            xml.enabled true
+        }
+    }
+
+}
+project(':ShareKernel') {
+    dependencies {}
+}
+
+project(':CheckInDomain') {
+    dependencies {
+        implementation project(':ShareKernel')
+    }
+}
+
+project(':CheckIn.Application') {
+    dependencies {
+        implementation project(':ShareKernel'), project(':CheckInDomain')
+        testImplementation project(':CheckInDomain').sourceSets.test.output
+    }
+}
+
+project('CheckIn.Infraestructure') {
+    dependencies {
+        implementation project(':ShareKernel'), project(':CheckInDomain'), project(':CheckIn.Application')
+        testImplementation project(':CheckInDomain').sourceSets.test.output, project(':CheckIn.Application').sourceSets.test.output
+    }
+}
+
+project('CheckInApi') {
+    dependencies {
+        implementation project(':ShareKernel'),
+                project(':CheckInDomain'),
+                project(':CheckIn.Infraestructure'),
+                project(':CheckIn.Application')
+        testImplementation project(':CheckInDomain').sourceSets.test.output,
+                project(':CheckIn.Application').sourceSets.test.output
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "javiervpr_airline"
+        property "sonar.organization", "javiervpr"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+

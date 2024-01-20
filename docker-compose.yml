@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  java_app:
+    container_name: java_app
+    image: jesuz194/diplomado-reserva:0.0.1
+#    build: .
+    ports:
+      - 8082:8082
+    environment:
+      - DATA_BASE_URL=jdbc:postgresql://java_db:5432/nurairbnbc
+      - DATA_BASE_USERNAME=postgres
+      - DATA_BASE_PASSWORD=Estudiar1995
+      - PORT=8082
+    depends_on:
+      - java_db
+  java_db:
+    container_name: java_db
+    image: postgres:14
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Estudiar1995
+      POSTGRES_DB: nurairbnbc
+
+networks:
+  nurbnboni:
+    driver: bridge

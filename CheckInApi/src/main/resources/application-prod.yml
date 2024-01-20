@@ -1,0 +1,17 @@
+server:
+  port: ${PORT:8082}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/nurairbnbc
+    username: postgres
+    password: Estudiar1995
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /
