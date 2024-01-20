@@ -2,10 +2,10 @@
 
 module.exports = {
   // Especifique la longitud de la línea en la que se ajustará la impresora.
-  // printWidth: 80,
+   printWidth: 80,
 
   /*Especifique el número de espacios por nivel de sangría.*/
-  tabWidth: 2,
+  tabWidth: 4,
 
   /*Sangre las líneas con tabulaciones en lugar de espacios.*/
   useTabs: false,
@@ -40,7 +40,7 @@ module.exports = {
 
   // /** @format */
   insertPragma: false,
-
+formatter:on,
   // Se formateará un archivo con lo siguiente como su primer comentario cuando se proporcione --require - pragma
   // requirePragma : false,
 

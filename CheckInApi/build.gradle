@@ -4,12 +4,13 @@ plugins {
     id 'java'
     id 'com.diffplug.spotless' version '5.0.0'
     id 'application'
+    id 'jacoco'
 }
 
 group 'com.nur'
 version '1.0'
 sourceCompatibility = '17'
-archivesBaseName  = 'check-in-api'
+//archivesBaseName  = 'check-in-api'
 
 repositories {
     mavenCentral()

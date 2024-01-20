@@ -4,5 +4,4 @@ include 'CheckInDomain'
 include 'CheckIn.Application'
 include 'CheckIn.Infraestructure'
 include 'CheckInApi'
-include 'ShareKernel'
 

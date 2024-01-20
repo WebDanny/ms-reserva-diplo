@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '3.1.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java-library'
+    id 'com.diffplug.spotless' version '5.0.0'
+    id 'jacoco'
 //    id 'application'
 }
 
@@ -18,12 +20,18 @@ repositories {
 dependencies {
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'junit:junit:4.13.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-//    testImplementation 'org.mockito:mockito-all:1.10.19'
     testImplementation('org.mockito:mockito-inline:3.4.0')
 }
 
 test {
     useJUnitPlatform()
 }
-//apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
+
+spotless {
+    java {
+        googleJavaFormat()
+        // Add other formatting rules if needed
+    }
+}

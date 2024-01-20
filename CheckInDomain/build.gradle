@@ -1,5 +1,7 @@
 plugins {
     id 'java-library'
+    id 'jacoco'
+    id 'com.diffplug.spotless' version '5.0.0'
 }
 
 version '1.0-SNAPSHOT'
@@ -13,8 +15,45 @@ dependencies {
     testImplementation 'org.mockito:mockito-all:1.10.19'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+
+    testImplementation 'org.testng:testng:7.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation 'org.jacoco:org.jacoco.core:0.8.7'
 }
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestCoverageVerification {
+    dependsOn test
+    enabled = true
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+        rule {
+            element = 'CLASS'
+            /*excludes = [
+                    'com.nur.valueObjects.*',
+                    'com.nur.factories.tipo.TipoPropiedadFactory.class',
+                    'com.nur.model.Reserve',
+                    'com.nur.model.StatusReserve',
+                    'com.nur.factories.tipo.TipoPropiedadFactory'
+            ]*/
+            limit {
+                counter = 'CLASS'
+                minimum = 0.2
+            }
+        }
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        // Add other formatting rules if needed
+    }
 }
