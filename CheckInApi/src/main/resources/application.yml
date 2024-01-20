@@ -4,9 +4,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/test
-    username: postgres
-    password: postgres
+    url: ${DATA_BASE_URL:jdbc:postgresql://db-postgresql-nyc3-79796-do-user-15512334-0.c.db.ondigitalocean.com:25060/nurairbnbc}
+    username: ${DATA_BASE_USERNAME:doadmin}
+    password: ${DATA_BASE_PASSWORD:AVNS_0wmhCcsag4WsAFG6qB0}
 
   jpa:
     generate-ddl: true
@@ -17,8 +17,14 @@ springdoc:
   swagger-ui:
     path: /
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 spring.kafka:
-  bootstrap-servers: localhost:19092
+  bootstrap-servers: http://64.23.146.135:19092
   producer:
     key-serializer: org.apache.kafka.common.serialization.LongSerializer
     value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
