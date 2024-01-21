@@ -4,9 +4,9 @@ import an.awesome.pipelinr.Command;
 import com.nur.dtos.PersonDTO;
 
 public class CreatePersonCommand implements Command<PersonDTO> {
-    PersonDTO personDTO;
+  PersonDTO personDTO;
 
-    public CreatePersonCommand(PersonDTO personDTO) {
-        this.personDTO = personDTO;
-    }
+  public CreatePersonCommand(PersonDTO personDTO) {
+    this.personDTO = personDTO;
+  }
 }

@@ -4,9 +4,10 @@ import an.awesome.pipelinr.Command;
 import com.nur.dtos.CommendDTO;
 
 public class CreateCommendCommand implements Command<CommendDTO> {
-    CommendDTO commendDTO;
+  CommendDTO commendDTO;
 
-    public CreateCommendCommand(CommendDTO commendDTO) {
-        this.commendDTO = commendDTO;
-    }
+  public CreateCommendCommand(CommendDTO commendDTO) {
+
+    this.commendDTO = commendDTO;
+  }
 }

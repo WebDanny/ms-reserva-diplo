@@ -14,8 +14,8 @@ class ReserveTest {
     void testCheckCreateReserve() throws BusinessRuleValidationException {
         Date fechaLlegada = new Date();
         Date fechaFinalizacion =  new Date();
-        Reserve reserve = new Reserve(fechaLlegada, fechaFinalizacion, "Detalle");
-
+		Propiedad propiedad = new Propiedad();
+        Reserve reserve = new Reserve(fechaLlegada, fechaFinalizacion, "Detalle", propiedad);
         assertEquals(fechaLlegada, reserve.getDateIn());
         assertEquals(fechaFinalizacion, reserve.getDateOut());
         assertEquals("Detalle", reserve.getDetails());

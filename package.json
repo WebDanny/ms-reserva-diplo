@@ -6,6 +6,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "lint-staged": "^15.2.0"
+    "lint-staged": "^15.2.0",
+    "spotless": "^0.0.1"
   }
 }

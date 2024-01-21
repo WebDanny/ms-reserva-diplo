@@ -8,18 +8,18 @@ import com.nur.util.UserMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetUserHandler implements Command.Handler<GetUserQuery, UsersDTO>{
+public class GetUserHandler implements Command.Handler<GetUserQuery, UsersDTO> {
 
-    private final IUserRepository userRepository;
+  private final IUserRepository userRepository;
 
-    public GetUserHandler(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+  public GetUserHandler(IUserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
-    @Override
-    public UsersDTO handle(GetUserQuery command) {
-        Usuario user = userRepository.getById(command.userId);
-        if(user == null) return null;
-        return UserMapper.from(user);
-    }
+  @Override
+  public UsersDTO handle(GetUserQuery command) {
+    Usuario user = userRepository.getById(command.userId);
+    if (user == null) return null;
+    return UserMapper.from(user);
+  }
 }

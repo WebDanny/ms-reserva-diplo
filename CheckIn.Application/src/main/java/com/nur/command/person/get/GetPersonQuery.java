@@ -4,9 +4,9 @@ import an.awesome.pipelinr.Command;
 import com.nur.dtos.PersonDTO;
 
 public class GetPersonQuery implements Command<PersonDTO> {
-    String personId;
+  String personId;
 
-    public GetPersonQuery(String personId) {
-        this.personId = personId;
-    }
+  public GetPersonQuery(String personId) {
+    this.personId = personId;
+  }
 }
