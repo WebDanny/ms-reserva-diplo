@@ -1,9 +1,7 @@
 package com.nur.event;
 
-
 import com.nur.core.DomainEvent;
 import com.nur.model.CheckIn;
-
 import java.time.LocalDate;
 
 public class PropiedadAssigned extends DomainEvent {

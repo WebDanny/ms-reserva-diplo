@@ -1,12 +1,9 @@
 package com.nur.model;
 
-
-
 import com.nur.core.AggregateRoot;
 import com.nur.core.BusinessRuleValidationException;
 import com.nur.event.CheckInCompleted;
 import com.nur.event.PropiedadAssigned;
-
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -16,7 +13,7 @@ public class CheckIn extends AggregateRoot {
   private UUID propiedadId;
   private Date date;
   private Propiedad propiedad;
-  //private List<Baggage> baggages;
+  // private List<Baggage> baggages;
   private List<Propiedad> avaiblePropiedades;
   private Persona persona;
 
@@ -27,8 +24,13 @@ public class CheckIn extends AggregateRoot {
     this.date = new Date();
   }
 
-
-  public CheckIn(UUID id, UUID propiedadId, Date date, Propiedad propiedad, List<Propiedad> avaiblePropiedades, Persona persona) {
+  public CheckIn(
+      UUID id,
+      UUID propiedadId,
+      Date date,
+      Propiedad propiedad,
+      List<Propiedad> avaiblePropiedades,
+      Persona persona) {
     this.id = id;
     this.propiedadId = propiedadId;
     this.date = date;
@@ -38,11 +40,11 @@ public class CheckIn extends AggregateRoot {
   }
 
   public void assignPropiedad(UUID propiedadCode) throws BusinessRuleValidationException {
-    Propiedad targetSeat = avaiblePropiedades
-      .stream()
-      .filter(s -> s.getId().equals(propiedadCode))
-      .findFirst()
-      .orElse(null);
+    Propiedad targetSeat =
+        avaiblePropiedades.stream()
+            .filter(s -> s.getId().equals(propiedadCode))
+            .findFirst()
+            .orElse(null);
     /*if (targetSeat == null) throw new BusinessRuleValidationException(
       "This propiedadCode is not valid" + propiedadCode
     );*/
@@ -56,18 +58,14 @@ public class CheckIn extends AggregateRoot {
       this.oldSeat = this.seat;
       this.propiedad.updateStatus(SeatStatus.FREE);
     }*/
-    //targetSeat.updateStatus(SeatStatus.BOOKED);
+    // targetSeat.updateStatus(SeatStatus.BOOKED);
     this.propiedad = targetSeat;
     addDomainEvent(new PropiedadAssigned(this));
     completeCheckIn();
   }
 
-
-
   public void completeCheckIn() {
-    if (this.propiedad != null ) addDomainEvent(
-      new CheckInCompleted(this)
-    );
+    if (this.propiedad != null) addDomainEvent(new CheckInCompleted(this));
   }
 
   public UUID getPropiedadId() {

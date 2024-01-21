@@ -1,6 +1,5 @@
 package com.nur.valueObjects;
 
-
 import com.nur.core.BusinessRuleValidationException;
 import com.nur.core.ValueObject;
 import com.nur.rules.CIRule;
