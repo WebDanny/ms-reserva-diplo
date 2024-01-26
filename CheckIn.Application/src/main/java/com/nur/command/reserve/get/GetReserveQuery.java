@@ -10,4 +10,6 @@ public class GetReserveQuery implements Command<ReserveDTO> {
     public GetReserveQuery(String reserveId) {
         this.reserveId = reserveId;
     }
+
+
 }

@@ -4,6 +4,8 @@ import com.nur.core.BusinessRuleValidationException;
 import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
 
+import java.util.UUID;
+
 public class ReserveUtils {
     public static ReserveJpaModel reserveToJpaEntity(Reserve reserve) {
         ReserveJpaModel model = new ReserveJpaModel();
@@ -12,8 +14,8 @@ public class ReserveUtils {
         model.setDateOut(reserve.getDateOut());
         model.setStatus(reserve.getStatus().name());
         model.setDetails(reserve.getDetails());
-        model.setPropiedad_id(reserve.getPropiedadId());
-        model.setPersona_id(reserve.getPersonaId());
+        model.setPropiedadId(UUID.fromString(reserve.getPropiedadId()));
+        model.setPersonId(UUID.fromString(reserve.getPersonaId()));
         return model;
     }
 
@@ -23,7 +25,7 @@ public class ReserveUtils {
                 jpaModel.getDateIn(),
                 jpaModel.getDateOut(),
                 jpaModel.getStatus(),
-                jpaModel.getDetails(), jpaModel.getPropiedad_id(), jpaModel.getPersona_id()
+                jpaModel.getDetails(), jpaModel.getPropiedadId().toString(), jpaModel.getPersonId().toString()
         );
     }
 }

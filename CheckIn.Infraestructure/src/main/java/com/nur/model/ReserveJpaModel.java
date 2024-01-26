@@ -2,7 +2,6 @@ package com.nur.model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -26,10 +25,10 @@ public class ReserveJpaModel {
 
 
     @Column(nullable = false)
-    private String persona_id;
+    private UUID personId;
 
     @Column(nullable = false)
-    private String propiedad_id;
+    private UUID propiedadId;
 
     public UUID getId() {
         return id;
@@ -71,19 +70,19 @@ public class ReserveJpaModel {
         this.details = details;
     }
 
-    public String getPersona_id() {
-        return persona_id;
+    public UUID getPersonId() {
+        return personId;
     }
 
-    public void setPersona_id(String persona_id) {
-        this.persona_id = persona_id;
+    public void setPersonId(UUID personId) {
+        this.personId = personId;
     }
 
-    public String getPropiedad_id() {
-        return propiedad_id;
+    public UUID getPropiedadId() {
+        return propiedadId;
     }
 
-    public void setPropiedad_id(String propiedad_id) {
-        this.propiedad_id = propiedad_id;
+    public void setPropiedadId(UUID propiedadId) {
+        this.propiedadId = propiedadId;
     }
 }

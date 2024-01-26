@@ -1,6 +1,7 @@
 package com.nur.repositories.reserve;
 
 import com.nur.core.BusinessRuleValidationException;
+import com.nur.model.Propiedad;
 import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
 import com.nur.repositories.IReserveRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class ReserveCrudRepositoryImpl implements IReserveRepository {
     @Autowired
     private IReserveCrudRepository reserveCrudRepository;
+
 
     @Override
     public UUID create(Reserve reserve) throws BusinessRuleValidationException {
@@ -29,13 +32,24 @@ public class ReserveCrudRepositoryImpl implements IReserveRepository {
 
     @Override
     public Reserve getById(UUID id) {
-        try {
-            ReserveJpaModel jpaModel = reserveCrudRepository.findById(id).orElse(null);
-            if(jpaModel == null) return null;
-            return ReserveUtils.jpaToReserve(jpaModel);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+                try {
+                    ReserveJpaModel jpaModel = reserveCrudRepository.findById(id).orElse(null);
+                    if(jpaModel == null) return null;
+                    return ReserveUtils.jpaToReserve(jpaModel);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+    }
+
+    @Override
+    public List<Reserve> getByPersonId(String personId) throws BusinessRuleValidationException {
+        List<ReserveJpaModel> jpaModels = reserveCrudRepository.findByPersonId(UUID.fromString(personId));
+        if (jpaModels == null || jpaModels.isEmpty()) return Collections.emptyList();
+        List<Reserve> reservas = new ArrayList<>();
+        for (ReserveJpaModel jpaModel : jpaModels) {
+             reservas.add(ReserveUtils.jpaToReserve(jpaModel));
         }
+        return reservas;
     }
 
     @Override

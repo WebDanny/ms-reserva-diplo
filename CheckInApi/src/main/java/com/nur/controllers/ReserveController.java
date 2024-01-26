@@ -2,6 +2,7 @@ package com.nur.controllers;
 
 import an.awesome.pipelinr.Pipeline;
 import com.nur.command.reserve.create.CreateReserveCommand;
+import com.nur.command.reserve.get.GetReservePersonQuery;
 import com.nur.command.reserve.get.GetReserveQuery;
 import com.nur.command.reserve.list.GetListReservesQuery;
 import com.nur.dtos.ReserveDTO;
@@ -30,6 +31,12 @@ public class ReserveController {
   @GetMapping("/reserve/{reserveId}")
   public ReserveDTO findById(@PathVariable String reserveId) {
     GetReserveQuery query = new GetReserveQuery(reserveId);
+    return query.execute(pipeline);
+  }
+
+  @GetMapping("/reserve/person/{personId}")
+  public List<ReserveDTO> findByPersonId(@PathVariable String personId) {
+    GetReservePersonQuery query = new GetReservePersonQuery(personId);
     return query.execute(pipeline);
   }
 

@@ -9,5 +9,7 @@ import java.util.UUID;
 public interface IReserveRepository {
     UUID create(Reserve reserve) throws BusinessRuleValidationException;
     Reserve getById(UUID id);
+
+    List<Reserve>  getByPersonId(String personId) throws BusinessRuleValidationException;;
     List<Reserve> getAll() throws BusinessRuleValidationException;
 }
