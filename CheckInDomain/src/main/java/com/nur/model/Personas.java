@@ -23,7 +23,7 @@ public class Personas extends Entity {
     }
 
 
-    public Personas(String name, String lastName, String ci, List<Reserve> reservas) {
+    public Personas(String name, String lastName, String ci) {
         this.name = name;
         this.lastName = lastName;
         this.ci = ci;

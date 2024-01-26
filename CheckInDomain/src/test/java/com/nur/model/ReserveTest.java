@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReserveTest {
     @Test
     void testCheckCreateReserve() throws BusinessRuleValidationException {
-        Date fechaLlegada = new Date();
-        Date fechaFinalizacion =  new Date();
-        Reserve reserve = new Reserve(fechaLlegada, fechaFinalizacion, "Detalle");
 
-        assertEquals(fechaLlegada, reserve.getDateIn());
-        assertEquals(fechaFinalizacion, reserve.getDateOut());
+        Reserve reserve = new Reserve(UUID.fromString("e3d515f3-9e82-4075-b42c-64ef643026fa"),"10-10-2023", "10-10-2023", "Detalle", "", "e3d515f3-9e82-4075-b42c-64ef643026fa","e3d515f3-9e82-4075-b42c-64ef643026fa");
+
+        assertEquals("10-10-2023", reserve.getDateIn());
+        assertEquals("10-10-2023", reserve.getDateOut());
         assertEquals("Detalle", reserve.getDetails());
         assertEquals("RESERVE", reserve.getStatus().name());
         assertNotNull(reserve.getDateIn());

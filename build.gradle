@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     id 'java'
-    id "org.sonarqube" version "3.4.0.2513"
+    id "org.sonarqube" version "4.4.1.3373"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id 'idea'
     id 'com.diffplug.spotless' version '5.0.0'
@@ -42,13 +42,17 @@ subprojects {
         }
     }
     jacocoTestReport {
-        dependsOn test
+        //dependsOn 'test'
         reports {
-            xml.enabled true
+            xml.required = true
+            html.required = true
+            html.destination file("build/reports/jacoco")
         }
     }
 
 }
+
+
 project(':ShareKernel') {
     dependencies {}
 }
@@ -84,12 +88,34 @@ project('CheckInApi') {
     }
 }
 
-sonarqube {
+
+sonar {
     properties {
-        property "sonar.projectKey", "javiervpr_airline"
-        property "sonar.organization", "javiervpr"
+        property "sonar.gradle.skipCompile", "true"
+        property "sonar.projectKey", "WebDanny_ms-reserva-diplo"
+        property "sonar.organization", "webdanny"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.token","7734da45353a9c8d743a6ff1e5b08d944a35f6fe"
+
     }
 }
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+jar {
+    enabled = false
+    archiveClassifier=''
+}
+
+task copyJarToBin {
+    copy {
+        from 'CheckInApi/build/libs/CheckInApi-1.0.jar'
+        into "/"
+    }
+}
+
 
 

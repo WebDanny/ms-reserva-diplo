@@ -28,13 +28,13 @@ public class PersonMapper {
         return new Personas(
                 person.getName(),
                 person.getLastName(),
-                person.getCi(),
-                fromDTOtoObject(person.getReservas())
+                person.getCi()
+
         );
     }
 
     public static List<ReserveDTO> fromObjetToReserveDTO(List<Reserve> reserveList) {
-       List<ReserveDTO> reserveDTOS = new ArrayList<>();
+        List<ReserveDTO> reserveDTOS = new ArrayList<>();
         for (int i = 0; i < reserveList.size(); i++) {
 
             ReserveDTO reserveDTO = new ReserveDTO();

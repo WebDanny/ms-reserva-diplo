@@ -25,7 +25,7 @@ public class PersonsUtils {
         return new Personas(
                 jpaModel.getName(),
                 jpaModel.getLastName(),
-                jpaModel.getCi(), null
+                jpaModel.getCi()
         );
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PersonaFactory implements IPersonaFactory{
     @Override
-    public Personas createPerson(String name, String lastName, String ci, List<Reserve> reservas) {
-        return new Personas(name, lastName, ci, reservas);
+    public Personas createPerson(String name, String lastName, String ci) {
+        return new Personas(name, lastName, ci);
     }
 }

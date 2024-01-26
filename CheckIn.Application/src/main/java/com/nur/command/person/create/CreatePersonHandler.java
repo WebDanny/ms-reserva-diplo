@@ -25,7 +25,7 @@ public class CreatePersonHandler implements Command.Handler<CreatePersonCommand,
     public PersonDTO handle(CreatePersonCommand request) {
         Personas persona = null;
         try {
-            persona = personaFactory.createPerson(request.personDTO.getName(), request.personDTO.getLastName(), request.personDTO.getCi(), null);
+            persona = personaFactory.createPerson(request.personDTO.getName(), request.personDTO.getLastName(), request.personDTO.getCi());
             if(persona == null){
                 return null;
             }
