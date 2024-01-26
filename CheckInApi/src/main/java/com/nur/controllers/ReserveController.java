@@ -26,7 +26,7 @@ public class ReserveController {
         this.pipeline = pipeline;
     }
 
-    @PostMapping("/reserve/create")
+    @PostMapping("/reserva/create")
     public ReserveDTO createReserve(@RequestBody ReserveDTO reserve){
         CreateReserveCommand command = new CreateReserveCommand(reserve);
         return command.execute(pipeline);
@@ -43,4 +43,7 @@ public class ReserveController {
         GetListReservesQuery query = new GetListReservesQuery();
         return query.execute(pipeline);
     }
+
+
+
 }

@@ -21,7 +21,7 @@ public class PersonsCrudRepositoryImpl implements IPersonRepository {
 
     @Override
     public UUID update(Personas person) {
-        Personas persons = new Personas(person.getName(), person.getLastName(), person.getCi());
+        Personas persons = new Personas(person.getName(), person.getLastName(), person.getCi(), person.getReservas());
         PersonaJpaModel model = PersonsUtils.personToJpaEntity(persons);
         return personsCrudRepository.save(model).getId();
     }

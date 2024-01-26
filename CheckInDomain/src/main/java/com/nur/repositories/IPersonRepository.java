@@ -9,4 +9,8 @@ public interface IPersonRepository {
     UUID update(Personas person);
     Personas getById(UUID id);
     List<Personas> getAll();
+
+
+
+
 }

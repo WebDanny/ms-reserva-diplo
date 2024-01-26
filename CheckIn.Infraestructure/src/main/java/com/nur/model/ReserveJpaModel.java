@@ -2,9 +2,7 @@ package com.nur.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,10 +14,10 @@ public class ReserveJpaModel {
     private UUID id;
 
     @Column(nullable = false, name = "DATE_IN")
-    private Date dateIn;
+    private String dateIn;
 
     @Column(nullable = false, name = "DATE_OUT")
-    private Date dateOut;
+    private String dateOut;
 
     @Column(nullable = false, name = "STATUS")
     private String status;
@@ -27,12 +25,12 @@ public class ReserveJpaModel {
     @Column(nullable = false, name = "DETAILS")
     private String details;
 
-    @OneToOne(optional = true)
-    private PropiedadJpaModel propiedad;
 
-    @OneToOne(optional = true)
-    private PersonaJpaModel persona;
+    @Column(nullable = false)
+    private String persona_id;
 
+    @Column(nullable = false)
+    private String propiedad_id;
 
     public UUID getId() {
         return id;
@@ -42,19 +40,19 @@ public class ReserveJpaModel {
         this.id = id;
     }
 
-    public Date getDateIn() {
+    public String getDateIn() {
         return dateIn;
     }
 
-    public void setDateIn(Date dateIn) {
+    public void setDateIn(String dateIn) {
         this.dateIn = dateIn;
     }
 
-    public Date getDateOut() {
+    public String getDateOut() {
         return dateOut;
     }
 
-    public void setDateOut(Date dateOut) {
+    public void setDateOut(String dateOut) {
         this.dateOut = dateOut;
     }
 
@@ -74,19 +72,19 @@ public class ReserveJpaModel {
         this.details = details;
     }
 
-    public PropiedadJpaModel getPropiedad() {
-        return propiedad;
+    public String getPersona_id() {
+        return persona_id;
     }
 
-    public void setPropiedad(PropiedadJpaModel propiedad) {
-        this.propiedad = propiedad;
+    public void setPersona_id(String persona_id) {
+        this.persona_id = persona_id;
     }
 
-    public PersonaJpaModel getPersona() {
-        return persona;
+    public String getPropiedad_id() {
+        return propiedad_id;
     }
 
-    public void setPersona(PersonaJpaModel persona) {
-        this.persona = persona;
+    public void setPropiedad_id(String propiedad_id) {
+        this.propiedad_id = propiedad_id;
     }
 }

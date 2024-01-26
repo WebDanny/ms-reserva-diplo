@@ -1,9 +1,7 @@
 package com.nur.util;
 
 import com.nur.core.BusinessRuleValidationException;
-import com.nur.dtos.PersonDTO;
 import com.nur.dtos.ReserveDTO;
-import com.nur.model.Personas;
 import com.nur.model.Reserve;
 
 import java.util.Date;
@@ -14,10 +12,12 @@ public class ReserveMapper {
         if (reserve == null) return new ReserveDTO();
         return new ReserveDTO(
                 reserve.getId().toString(),
-                reserve.getDateIn() == null ? new Date() : reserve.getDateIn(),
-                reserve.getDateOut() == null ? new Date() : reserve.getDateOut(),
+                reserve.getDateIn() == null ? new Date().toString() : reserve.getDateIn(),
+                reserve.getDateOut() == null ? new Date().toString() : reserve.getDateOut(),
                 reserve.getDetails() == null ? "" : reserve.getDetails(),
-                reserve.getPropiedad() == null ? null : reserve.getPropiedad()
+                reserve.getStatus() == null ? null : reserve.getStatus().name(),
+                reserve.getPropiedadId() == null ? null : reserve.getPropiedadId(),
+                reserve.getPersonaId() == null ? null : reserve.getPersonaId()
         );
     }
 
@@ -27,7 +27,9 @@ public class ReserveMapper {
                 reserveDTO.getDateIn(),
                 reserveDTO.getDateOut(),
                 reserveDTO.getDetails(),
-                reserveDTO.getPropiedad()
+                reserveDTO.getStatus(),
+                reserveDTO.getPropiedad_id(),
+                reserveDTO.getPersona_id()
         );
     }
 }

@@ -6,7 +6,8 @@ import com.nur.model.Reserve;
 import com.nur.model.StatusReserve;
 
 import java.util.Date;
+import java.util.UUID;
 
 public interface IReserveFactory {
-    Reserve createReserve(Date dateIn, Date dateOut, String details, Propiedad propiedad) throws BusinessRuleValidationException;
+    Reserve createReserve(UUID id, String dateIn, String dateOut, String details, String status, String propiedadId, String personaId) throws BusinessRuleValidationException;
 }

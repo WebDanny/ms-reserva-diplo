@@ -4,7 +4,7 @@ server:
 
 spring:
   datasource:
-    url: ${DATA_BASE_URL:jdbc:postgresql://db-postgresql-nyc3-79796-do-user-15512334-0.c.db.ondigitalocean.com:25060/nurairbnbc}
+    url: ${DATA_BASE_URL:jdbc:postgresql://db-postgresql-nyc3-79796-do-user-15512334-0.c.db.ondigitalocean.com:25060/reserva}
     username: ${DATA_BASE_USERNAME:doadmin}
     password: ${DATA_BASE_PASSWORD:AVNS_0wmhCcsag4WsAFG6qB0}
 

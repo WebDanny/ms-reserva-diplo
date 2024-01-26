@@ -18,11 +18,14 @@ public class PropiedadJpaModel {
     @Column(nullable = false)
     public String nombre;
 
-    @Column(name="estado",nullable = false)
+    @Column(name = "estado", nullable = false)
     public String estado;
 
     @Column(nullable = false)
     public double precio;
+
+
+
 
     public UUID getId() {
         return id;
@@ -55,4 +58,6 @@ public class PropiedadJpaModel {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+
 }

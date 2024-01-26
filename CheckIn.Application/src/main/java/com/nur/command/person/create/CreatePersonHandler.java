@@ -9,8 +9,6 @@ import com.nur.repositories.IPersonRepository;
 import com.nur.util.PersonMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 public class CreatePersonHandler implements Command.Handler<CreatePersonCommand, PersonDTO> {
 
@@ -27,7 +25,7 @@ public class CreatePersonHandler implements Command.Handler<CreatePersonCommand,
     public PersonDTO handle(CreatePersonCommand request) {
         Personas persona = null;
         try {
-            persona = personaFactory.createPerson(request.personDTO.getName(), request.personDTO.getLastName(), request.personDTO.getCi());
+            persona = personaFactory.createPerson(request.personDTO.getName(), request.personDTO.getLastName(), request.personDTO.getCi(), null);
             if(persona == null){
                 return null;
             }

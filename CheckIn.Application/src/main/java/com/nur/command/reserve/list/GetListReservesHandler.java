@@ -1,14 +1,9 @@
 package com.nur.command.reserve.list;
 
 import an.awesome.pipelinr.Command;
-import com.nur.command.person.list.GetListPersonsQuery;
-import com.nur.dtos.PersonDTO;
 import com.nur.dtos.ReserveDTO;
-import com.nur.model.Personas;
 import com.nur.model.Reserve;
-import com.nur.repositories.IPersonRepository;
 import com.nur.repositories.IReserveRepository;
-import com.nur.util.PersonMapper;
 import com.nur.util.ReserveMapper;
 import org.springframework.stereotype.Component;
 

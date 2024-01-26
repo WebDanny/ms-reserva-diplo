@@ -1,12 +1,9 @@
 package com.nur.repositories.reserve;
 
 import com.nur.core.BusinessRuleValidationException;
-import com.nur.model.PersonaJpaModel;
-import com.nur.model.Personas;
 import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
 import com.nur.repositories.IReserveRepository;
-import com.nur.utils.PersonsUtils;
 import com.nur.utils.ReserveUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -25,7 +22,7 @@ public class ReserveCrudRepositoryImpl implements IReserveRepository {
 
     @Override
     public UUID create(Reserve reserve) throws BusinessRuleValidationException {
-        Reserve reserveModel = new Reserve(reserve.getDateIn(), reserve.getDateOut(), reserve.getDetails(), reserve.getPropiedad());
+        Reserve reserveModel = new Reserve(reserve.getId(),reserve.getDateIn(), reserve.getDateOut(), reserve.getDetails(),reserve.getStatus().name(), reserve.getPropiedadId(), reserve.getPersonaId());
         ReserveJpaModel model = ReserveUtils.reserveToJpaEntity(reserveModel);
         return reserveCrudRepository.save(model).getId();
     }

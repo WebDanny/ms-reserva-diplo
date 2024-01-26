@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class OrderManageService {
 
     public Reserve confirm(Reserve orderPayment, Reserve orderStock) {
-        Reserve o = new Reserve(orderPayment.getId(),
+        /*Reserve o = new Reserve(orderPayment.getId(),
                 orderPayment.getDateIn(),
                 orderPayment.getDateOut(),
-                orderPayment.getDetails(),orderPayment.getPropiedad());
+                orderPayment.getDetails(),orderPayment.getStatus(),orderPayment.getPropiedadId(), orderPayment.getPersonaId());
 
         System.out.println("CONFIRMADA");
         orderStock.setStatus(StatusReserve.FINALIZED);
@@ -28,7 +28,7 @@ public class OrderManageService {
             o.setStatus("ROLLBACK");
             o.setSource(source);
         }*/
-        return o;
+        return null;
     }
 
 }

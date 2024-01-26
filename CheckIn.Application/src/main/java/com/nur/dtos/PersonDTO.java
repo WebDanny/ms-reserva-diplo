@@ -3,20 +3,29 @@ package com.nur.dtos;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nur.annotations.Generated;
 
+import java.util.List;
+
 @Generated
 public class PersonDTO {
     public String id;
     public String name;
     public String lastName;
     public String ci;
+    public List<ReserveDTO> reservas;
+
+    public List<ReserveDTO> getReservas() {
+        return reservas;
+    }
+
     public PersonDTO() {
     }
 
-    public PersonDTO(String id, String name, String lastName, String ci) {
+    public PersonDTO(String id, String name, String lastName, String ci, List<ReserveDTO> reservas) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.ci = ci;
+        this.reservas = reservas;
     }
 
     public String getId() {

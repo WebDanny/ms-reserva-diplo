@@ -1,14 +1,14 @@
 package com.nur.model;
 
-import com.nur.core.BusinessRuleValidationException;
 import com.nur.core.Entity;
 
-import java.util.UUID;
+import java.util.List;
 
 public class Personas extends Entity {
     public String name;
     public String lastName;
     public String ci;
+    private List<Reserve> reservas;
 
     public String getName() {
         return name;
@@ -22,13 +22,18 @@ public class Personas extends Entity {
         return ci;
     }
 
-    public Personas(String name, String lastName, String ci) {
-        id = UUID.randomUUID();
+
+    public Personas(String name, String lastName, String ci, List<Reserve> reservas) {
         this.name = name;
         this.lastName = lastName;
         this.ci = ci;
+        this.reservas = reservas;
     }
 
     public Personas() {
+    }
+
+    public List<Reserve> getReservas() {
+        return reservas;
     }
 }

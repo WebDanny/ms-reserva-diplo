@@ -11,10 +11,10 @@ import java.util.UUID;
 public class Reserve extends Entity {
 
     @JsonProperty("dateIn")
-    public Date dateIn;
+    public String dateIn;
 
     @JsonProperty("dateOut")
-    public Date dateOut;
+    public String dateOut;
 
     @JsonProperty("status")
     public StatusReserve status;
@@ -22,18 +22,32 @@ public class Reserve extends Entity {
     @JsonProperty("details")
     public String details;
 
-    @JsonProperty("propiedad")
-    public Propiedad propiedad;
+    @JsonProperty("propiedadId")
+    public String propiedadId;
+
+    public Reserve(UUID id, String dateIn, String dateOut, String status, String details, String propiedadId, String personaId) {
+        this.id = id;
+        this.dateIn = dateIn;
+        this.dateOut = dateOut;
+        this.status = StatusReserve.RESERVE;
+        this.details = details;
+        this.propiedadId = propiedadId;
+        this.personaId = personaId;
+    }
+
+    @JsonProperty("personaId")
+    public String personaId;
 
     public void setStatus(StatusReserve status) {
         this.status = status;
     }
 
-    public Date getDateIn() {
+
+    public String getDateIn() {
         return dateIn;
     }
 
-    public Date getDateOut() {
+    public String getDateOut() {
         return dateOut;
     }
 
@@ -45,29 +59,14 @@ public class Reserve extends Entity {
         return status;
     }
 
-    public Propiedad getPropiedad() {
-        return propiedad;
+    public String getPropiedadId() {
+        return propiedadId;
     }
 
-
-    public Reserve(Date dateIn, Date dateOut, String details, Propiedad propiedad) throws BusinessRuleValidationException {
-        new DateValueObject(dateIn,dateOut);
-        id = UUID.randomUUID();
-        this.dateIn = dateIn;
-        this.status = StatusReserve.RESERVE;
-        this.dateOut = dateOut;
-        this.details = details;
-        this.propiedad = propiedad;
+    public String getPersonaId() {
+        return personaId;
     }
 
-    public Reserve(UUID id,Date dateIn, Date dateOut, String details, Propiedad propiedad)  {
-        setId(id);
-        this.dateIn = dateIn;
-        this.status = StatusReserve.RESERVE;
-        this.dateOut = dateOut;
-        this.details = details;
-        this.propiedad = propiedad;
-    }
 
 
 

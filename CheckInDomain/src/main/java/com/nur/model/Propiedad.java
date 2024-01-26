@@ -1,7 +1,6 @@
 package com.nur.model;
 
 
-
 import com.nur.core.AggregateRoot;
 import com.nur.core.BusinessRuleValidationException;
 import com.nur.event.PropiedadEliminado;
@@ -27,6 +26,9 @@ public class Propiedad extends AggregateRoot {
         return tipoPropiedad;
     }
 
+    public List<Reserve> reservas;
+
+
     public Propiedad() {
         this.tipoPropiedad = new TipoPropiedad();
         this.caracteristicasPropiedades = new ArrayList<>();
@@ -35,24 +37,25 @@ public class Propiedad extends AggregateRoot {
     public Propiedad(String id, String nombre, String estado, double precio) throws BusinessRuleValidationException {
         this.id = UUID.fromString(id);
         this.nombre = nombre;
-        if (estado == "HABILITADO") this.estado = Estado.HABILITADO; else this.estado =
+        if (estado == "HABILITADO") this.estado = Estado.HABILITADO;
+        else this.estado =
                 Estado.INHABILITADO;
         this.precio = precio;
     }
 
     public void agregarCaracteristica(UUID id, boolean cocina, boolean wifi, boolean estacionamiento, boolean camaraSeguridad, boolean detectorHumo, boolean secadoraPelo, boolean shampoo, boolean aguaCaliente) throws Exception {
-        if(caracteristicasPropiedades.stream().anyMatch(item -> item.id == id)){
+        if (caracteristicasPropiedades.stream().anyMatch(item -> item.id == id)) {
             throw new Exception("Esa caracteristica ya existe en la propiedad");
         }
         CaracteristicasPropiedad item = new CaracteristicasPropiedad(id, cocina, wifi, estacionamiento, camaraSeguridad, detectorHumo, secadoraPelo, shampoo, aguaCaliente);
         caracteristicasPropiedades.add(item);
     }
 
-    public void agregarTipoPropiedad(UUID IdTipo, String descripcion){
+    public void agregarTipoPropiedad(UUID IdTipo, String descripcion) {
         TipoPropiedad tipo = new TipoPropiedad(IdTipo, descripcion);
     }
 
-    public void crearPropiedad(){
+    public void crearPropiedad() {
         PropiedadHabilitado event = new PropiedadHabilitado(this, new Date());
         addDomainEvent(event);
     }
@@ -72,7 +75,6 @@ public class Propiedad extends AggregateRoot {
     }
 
 
-
     public String getNombre() {
         return nombre;
     }
@@ -85,7 +87,5 @@ public class Propiedad extends AggregateRoot {
         return precio;
     }
 
-    public List<CaracteristicasPropiedad> getCaracteristicasPropiedades() {
-        return caracteristicasPropiedades;
-    }
+
 }

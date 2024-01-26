@@ -2,6 +2,8 @@ package com.nur.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +22,7 @@ public class PersonaJpaModel {
 
     @Column(nullable = false, name = "CIPERSON")
     private String ci;
+
 
     public UUID getId() {
         return id;
@@ -52,4 +55,6 @@ public class PersonaJpaModel {
     public void setCi(String ci) {
         this.ci = ci;
     }
+
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin(origins = "*")
-@RestController("/api/users")
+@RestController
 public class UserControllers {
     Logger logger = LoggerFactory.getLogger(PersonsController.class);
 
@@ -23,7 +23,7 @@ public class UserControllers {
         this.pipeline = pipeline;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/user/create")
     public UsersDTO createUser(@RequestBody UsersDTO usersDTO){
         CreateUserCommand command = new CreateUserCommand(usersDTO);
         return command.execute(pipeline);
