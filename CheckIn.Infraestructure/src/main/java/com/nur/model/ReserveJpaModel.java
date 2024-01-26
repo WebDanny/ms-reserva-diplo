@@ -9,7 +9,6 @@ import java.util.UUID;
 @Table(name = "Reserve")
 public class ReserveJpaModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_RESERVE")
     private UUID id;
 
